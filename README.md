@@ -28,3 +28,7 @@ Whether it takes less than a day or several weeks, Time Keep will track the amou
 - Setup paid time off policies. People can view their balances and submit time off requests for approval
 ## Clock out questions
 - Collect information, customize questions for people to answer when they clock out, and receive timely notifications of unexpected responses
+
+
+### GitHub Link: 
+- https://github.com/projects-and-algos-april-2020/Time-Keep.git
