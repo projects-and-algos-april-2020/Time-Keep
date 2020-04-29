@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script defer type="text/javascript" src="{{url_for('static', filename='js/my_script.js')}}"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Welcome</title>
+</head>
+<body>
+    <div id="container">
+
+        <h1>All the Groups</h1>
+        <table>
+            <thead>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <!-- <th>Password</th> -->
+                <th>Action</th>
+            </thead>
+            {%for user in groups%}
+            <tbody>
+                <td>{{user.id}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <!-- <td>{{user.password}}</td> -->
+                <td><p><a href="/group_delete/{{user['id']}}">Delete Group</a></p></td>
+            </tbody>
+            {%endfor%}
+        </table>
+        
+        <h1>All the Users</h1> <a href="/">Logout</a>
+        <table>
+            <thead>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Group</th>
+                <th>Email</th>
+                <!-- <th>Password</th> -->
+                <th>Action</th>
+            </thead>
+            {%for user in users%}
+            <tbody>
+                <td>{{user.id}}</td>
+                <td>{{user.first_name}} {{user.last_name}}</td>
+                <td>{{user.group.name}}</td>
+                <td>{{user.email}}</td>
+                <!-- <td>{{user.password}}</td> -->
+                <td><p><a href="/user_delete/{{user['id']}}">Delete User</a></p></td>
+            </tbody>
+            {%endfor%}
+        </table>
+        <hr>
+        
+        <h1>All the Timecards</h1> <a href="/">Logout</a>
+        <table>
+            <thead>
+                <th>Task Name</th>
+                <th>week_end</th>
+                <th>day</th>
+                <th>reason</th>
+                <th>created_at</th>
+                <th>updated_at</th>
+                <th>employee</th>
+                <th>Action</th>
+            </thead>
+            {%for record in timecards%}
+            <tbody>
+                <td>{{record.task_name}}</td>
+                <td>{{record.week_end}}</td>
+                <td>{{record.day}}</td>
+                <td>{{record.reason}}</td>
+                <td>{{record.created_at}}</td>
+                <td>{{record.updated_at}}</td>
+                {%for user in record.employee%}
+                <td>{{user.first_name}}</td>
+                {%endfor%}
+                <td><p><a href="/time_delete/{{record['id']}}">Delete Time</a></p></td>
+            </tbody>
+            {%endfor%}
+        </table>
+        <hr>
+    </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script defer type="text/javascript" src="{{url_for('static', filename='js/my_script.js')}}"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Welcome</title>
+</head>
+<body>
+    <div id="container">
+        <div class="header">
+            <h1>Welcome to TimeKeep</h1>
+            <p><a href="login">Login</a> | <a href="portal">Admin Login</a></p>
+        </div>
+        <h3>What is TimeKeep?</h3>
+        <p>TimeKeep records your time for any project you are working on. Here is a list of features available with TimeKeep </p>
+        <ul>
+            <li>View a chart that shows you what day and time you worked on a specific task and for how long. </li>
+            <li>TimeKeep also gives you the ability to create a group or organization for tracking the time of multiple people on a specific project or task.</li>
+            <li>You can start, pause, and stop your time for more presise time record.</li>
+            <li>Working on multiple projects or tasks? Not a problem, TimeKeep allows you to stop your time for one task and start tracking time to another task.</li>
+        </ul>
+
+        <h2>Get Started </h2>
+        <h4>Create a Group</h4>
+        
+        <form action="/add_group" method="POST">
+            <p>Group Name: <input type="text" name="gname"></p>
+            <p>Email: <input type="text" name="email" class="reg_form"></p>
+            <p>Password: <input type="password" name="pword"></p>
+            <p>Confirm Password: <input type="password" name="passconf"></p>
+            <input type="submit" value="Add" >
+        </form>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>

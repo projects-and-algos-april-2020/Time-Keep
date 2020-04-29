@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script defer type="text/javascript" src="{{url_for('static', filename='js/my_script.js')}}"></script>
+    <script defer type="text/javascript" src="{{url_for('static', filename='js/timer.js')}}"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Time Clock</title>
+</head>
+<body>
+    <div id="container">
+        <div id="header">
+            <h1>Welcome to TimeKeep</h1>
+            <p><a href="/user_portal">Go Back</a> | <a href="/">Logout</a></p>
+        </div>
+        
+        <hr>
+        <h2>Good Morning {{user.first_name}} {{user.last_name}}!</h2> 
+        <div class="clock">
+            <h4>{{date.strftime("%A %b %d, %Y")}}</h4>
+            <h4>{{date.strftime("%I:%M %p")}}</h4>
+        </div>
+        
+        <h2>Start Tracking Your Time</h2>
+        <form id="sw_form">
+        <p id="task">What Task are you working on?<br/><input type="text" class="modBox" name="tname" id="tname"/></p>
+        <p>Week Ending:<br/><input type="date" class="modBox" name="wkend" id="wkend" required/></p>
+        
+        
+        <!-- [START/STOP BUTTON] -->
+            <input type="hidden" name="strt" value="start" id="sw-strt"/>
+            <input type="button" value="Start" class="modBox" id="sw-go" required/>
+        <!-- [FINISHED BUTTON] -->
+            <input type="hidden" name="stp" value="stop"/>
+            <input type="button" value="Finished" class="modBox" id="sw-rst" required/>
+        </form>
+        
+
+        <h2>Total Time Worked:</h2>
+        
+        <div id="stopwatch">
+            <!-- [DISPLAY TIMER] -->
+            <div id="sw-time">00:00:00</div>
+        </div>
+        
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+    </div>
+</body>
+</html>

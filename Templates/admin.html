@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script defer type="text/javascript" src="{{url_for('static', filename='js/my_script.js')}}"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Admin</title>
+</head>
+<body>
+    <div id="container">
+        <h1>Create User</h1>
+        <form action='/user_login' method="POST" class="reg_form">
+            <p>Email: <input type="text" name="email" class="reg_email"></p>
+            <p>Password: <input type="password" name="pword"></p>
+            <p><input type="submit" value="Login"></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script defer type="text/javascript" src="{{url_for('static', filename='js/my_script.js')}}"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Welcome</title>
+</head>
+<body>
+    <div id="container">
+        <h1>Welcome to TimeKeep</h1>
+        <a href="/">Logout</a>
+        <hr>
+        <h2>Good Morning {{user.first_name}} {{user.last_name}}</h2> 
+        <div class="clock">
+            <h4>{{date.strftime("%A %b %d, %Y")}}</h4>
+            <h4>{{date.strftime("%I:%M %p")}}</h4>
+        </div>
+
+        <h2>Start Tracking Your Time</h2>
+        
+        <h3>How do you want to track your time today?</h3>
+        <button><a href="time_clock">Time Clock</a></button>
+        <!-- <form action="sick_time" method="post">
+            <input type="submit" value="Sick Time">
+        </form> -->
+        <!-- <button><a href="sick_time">Sick Time</a></button>         -->
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <h2>Your Timecard This Week</h2>
+        <p>Name: {{user.first_name}} {{user.last_name}}</p>
+        <p>Week Ending: <input type="date" name="wk_end" id=""></p>
+        <table>
+            <thead>
+                <th>Task Name</th>
+                
+                <th>Sunday</th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+                <th>Saturday</th>
+                <th>Reason</th>
+            </thead>
+            {%for time in user.time_card%}
+            <tbody>
+                <td>{{time.task_name}}</td>
+                                
+                {%if time.day == "Sunday"%}
+                <td>{{time.created_at}}</td>
+                {%else%}
+                <td></td>
+                {%endif%}
+                {%if time.day == "Monday"%}
+                <td>{{time.created_at}}</td>
+                {%else%}
+                <td></td>
+                {%endif%}
+                {%if time.day == "Tuesday"%}
+                <td>{{time.created_at}}</td>
+                {%else%}
+                <td></td>
+                {%endif%}
+                {%if time.day == "Wednesday"%}
+                <td>{{time.created_at}}</td>
+                {%else%}
+                <td></td>
+                {%endif%}
+                {%if time.day == "Thursday"%}
+                <td>{{time.created_at}}</td>
+                {%else%}
+                <td></td>
+                {%endif%}
+                {%if time.day == "Friday"%}
+                <td>{{time.created_at}}</td>
+                {%else%}
+                <td></td>
+                {%endif%}
+                {%if time.day == "Saturday"%}
+                <td>{{time.created_at}}</td>
+                {%else%}
+                <td></td>
+                {%endif%}
+                <td>{{time.reason}}</td>
+            </tbody>
+            {%endfor%}
+        </table>
+        <p><a href="/edit_request/{{user['id']}}">Edit Timecard</a></p>
+    </div>
+</body>
+</html>

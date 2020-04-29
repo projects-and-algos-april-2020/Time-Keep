@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script defer type="text/javascript" src="{{url_for('static', filename='js/my_script.js')}}"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Welcome</title>
+</head>
+<body>
+    <div id="container">
+        <h1>Welcome to TimeKeep</h1>
+        <div class="nav">
+            <a href="/">Logout</a>
+        </div>
+        <hr>
+        <h2>All the Users in Your Organization</h2>
+        <table>
+            <thead>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Status</th>
+                <!-- <th>Password</th> -->
+                <th>Action</th>
+            </thead>
+            {%for user in group.employee%}
+            <tbody>
+                
+                <td>{{user.id}}</td>
+                <td>{{user.first_name}} {{user.last_name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.status}}</td>
+                <!-- <td>{{user.password}}</td> -->
+                <td><p><a href="/user_delete/{{user['id']}}">Delete User</a></p></td>
+                
+            </tbody>
+            {%endfor%}
+        </table>
+            <h3>Create a new User</h3>
+            <form action="/add_user" method="POST">
+                <p>First Name <input type="text" name="fname"></p>
+                <p>Last Name <input type="text" name="lname"></p>
+                <p>Email <input type="text" name="email" class="reg_form"></p>
+                <p>Role 
+                <input type="radio" id="admin" name="status" value="Admin">
+                <label for="admin">Admin</label> &nbsp
+                <input type="radio" id="standard" name="status" value="Standard" checked>
+                <label for="standard">Standard</label></p>
+                <p>Password: <input type="password" name="pword"></p>
+                <p>Confirm Password: <input type="password" name="passconf"></p>
+                <input type="submit" value="Add">
+            </form>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+    </div>
+</body>
+</html>
