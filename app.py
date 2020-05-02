@@ -6,17 +6,12 @@ from flask_bcrypt import Bcrypt
 import datetime, re
 from datetime import date, timedelta
 
-
-
-
 app = Flask(__name__)
-DJANGO_NOTIFICATIONS_CONFIG = {
-'USE_JSONFIELD': True
-}
-app.secret_key = "Totally Secrete"
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///timekeep.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+DJANGO_NOTIFICATIONS_CONFIG = {'USE_JSONFIELD': True}
+app.secret_key = "Totally Secrete"
 db = SQLAlchemy(app)
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 bcrypt = Bcrypt(app)
@@ -156,7 +151,7 @@ def add_user():
         session['user_id'] = new_user.id
     return redirect('/group_portal')
 
-# User Login
+# Login
 @app.route('/login')
 def login():
     return render_template('login.html')
@@ -330,7 +325,7 @@ def stop_time():
         print('Your time has been submited')
     return redirect("/user_portal")
 
-
+# Sick Time
 @app.route('/sick_time', methods=['POST'])
 def sick_time():
     if 'user_id' not in session:

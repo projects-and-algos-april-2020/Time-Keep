@@ -56,37 +56,37 @@
                 <td>{{time.task_name}}</td>
                                 
                 {%if time.day == "Sunday"%}
-                <td>{{time.created_at}}</td>
+                <td>{{time.created_at.strftime("%I:%M %p")}}</td>
                 {%else%}
                 <td></td>
                 {%endif%}
                 {%if time.day == "Monday"%}
-                <td>{{time.created_at}}</td>
+                <td>{{time.created_at.strftime("%I:%M %p")}}</td>
                 {%else%}
                 <td></td>
                 {%endif%}
                 {%if time.day == "Tuesday"%}
-                <td>{{time.created_at}}</td>
+                <td>{{time.created_at.strftime("%I:%M %p")}}</td>
                 {%else%}
                 <td></td>
                 {%endif%}
                 {%if time.day == "Wednesday"%}
-                <td>{{time.created_at}}</td>
+                <td>{{time.created_at.strftime("%I:%M %p")}}</td>
                 {%else%}
                 <td></td>
                 {%endif%}
                 {%if time.day == "Thursday"%}
-                <td>{{time.created_at}}</td>
+                <td>{{time.created_at.strftime("%I:%M %p")}}</td>
                 {%else%}
                 <td></td>
                 {%endif%}
                 {%if time.day == "Friday"%}
-                <td>{{time.created_at}}</td>
+                <td>{{time.created_at.strftime("%I:%M %p")}}</td>
                 {%else%}
                 <td></td>
                 {%endif%}
                 {%if time.day == "Saturday"%}
-                <td>{{time.created_at}}</td>
+                <td>{{time.created_at.strftime("%I:%M %p")}}</td>
                 {%else%}
                 <td></td>
                 {%endif%}
